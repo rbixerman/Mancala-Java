@@ -1,0 +1,9 @@
+.board-row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.side {
+    text-align: center;
+}

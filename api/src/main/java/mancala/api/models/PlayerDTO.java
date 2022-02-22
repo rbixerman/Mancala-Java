@@ -2,39 +2,35 @@ package mancala.api.models;
 
 import mancala.domain.Mancala;
 
-public class PlayerDTO {
-	public PlayerDTO(Mancala mancala, String name, boolean isFirstPlayer) {
-		this.name = name;
-		type = isFirstPlayer ? "player1" : "player2";
-		hasTurn = mancala.isPlayersTurn(isFirstPlayer ? Mancala.Player.PLAYER_ONE : Mancala.Player.PLAYER_TWO);
-		this.pits = new PitDTO[7];
-		var firstHole = isFirstPlayer ? 0 : 7;
-		for (int i = 0; i < 7; ++i) {
-			this.pits[i] = new PitDTO(i + firstHole, mancala.getStonesForPit(i + firstHole));
-		}
-	}
+public record PlayerDTO(String name, String type, boolean hasTurn,
+                        PitDTO[] pits) {
 
-	String name;
+    public String getName() {
+        return name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getType() {
+        return type;
+    }
 
-	String type;
+    public boolean getHasTurn() {
+        return hasTurn;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public PitDTO[] getPits() {
+        return pits;
+    }
 
-	boolean hasTurn;
+    public static PlayerDTO createPlayerDTO(Mancala mancala, String name, boolean isFirstPlayer) {
+        String type = isFirstPlayer ? "player1" : "player2";
+        boolean hasTurn = mancala.isPlayersTurn(isFirstPlayer ? Mancala.Player.PLAYER_ONE : Mancala.Player.PLAYER_TWO);
 
-	public boolean getHasTurn() {
-		return hasTurn;
-	}
+        PitDTO[] pits = new PitDTO[7];
+        var firstHole = isFirstPlayer ? 0 : 7;
+        for (int i = 0; i < 7; ++i) {
+            pits[i] = new PitDTO(i + firstHole, mancala.getStonesForPit(i + firstHole));
+        }
 
-	PitDTO[] pits;
-
-	public PitDTO[] getPits() {
-		return pits;
-	}
+        return new PlayerDTO(name, type, hasTurn, pits);
+    }
 }

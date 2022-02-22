@@ -1,5 +1,8 @@
 package mancala.domain;
 
+import mancala.domain.exceptions.GameIsOverException;
+import mancala.domain.exceptions.NotAValidMoveException;
+
 public class Kalaha extends Bowl {
 
     private static final int KALAHA_STARTING_STONES = 0;

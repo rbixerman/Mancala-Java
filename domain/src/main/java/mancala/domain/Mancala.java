@@ -1,5 +1,7 @@
 package mancala.domain;
 
+import mancala.domain.exceptions.MancalaException;
+
 public interface Mancala {
 
 	enum Player {
@@ -18,7 +20,7 @@ public interface Mancala {
 	 * @return True if the first player has the next turn, false if it's the turn of
 	 *         the other player.
 	 */
-	boolean isPlayersTurn(Player player);
+	boolean isPlayersTurn(Mancala.Player player);
 
 	/**
 	 * Method for playing the specified recess. Index is as specified below:

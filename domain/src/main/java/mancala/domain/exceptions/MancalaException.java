@@ -1,4 +1,4 @@
-package mancala.domain;
+package mancala.domain.exceptions;
 
 public class MancalaException extends Exception {
     public MancalaException(String message) {

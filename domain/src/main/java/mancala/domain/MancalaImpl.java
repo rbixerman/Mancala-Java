@@ -1,35 +1,83 @@
 package mancala.domain;
 
+import mancala.domain.exceptions.MancalaException;
+
 public class MancalaImpl implements Mancala {
+
+    private final mancala.domain.Player playerOne;
+    private final mancala.domain.Player playerTwo;
+
+    private final Bowl game;
+
     public MancalaImpl() {
-        // Initialize the game here.
+        this.game = new Bowl();
+        this.playerOne = game.getOwner();
+        this.playerTwo = game.getOwner().getOpponent();
     }
 
     @Override
     public boolean isPlayersTurn(Mancala.Player player) {
-        return true;
+        return switch(player) {
+            case PLAYER_ONE -> playerOne.isActive();
+            case PLAYER_TWO -> playerTwo.isActive();
+        };
     }
 
     @Override
     public void playPit(int index) throws MancalaException {
-        // Implement playing a pit.
+        game.getNeighbour(index).doMove();
     }
 
     @Override
     public int getStonesForPit(int index) {
-        // Make a sane implementation.
-        if ((index + 1) % 7 == 0)
-            return 0;
-        return 4;
+        return game.getNeighbour(index).getNumberOfStones();
     }
 
     @Override
     public boolean isEndOfGame() {
-        return false;
+        return game.isGameOver();
     }
 
     @Override
     public Mancala.Winner getWinner() {
-        return Mancala.Winner.NO_PLAYERS;
+        if (!isEndOfGame()) {
+            return Winner.NO_PLAYERS;
+        }
+
+        mancala.domain.Player winner = game.getWinner();
+
+        if (winner.equals(playerOne)) {
+            return Winner.PLAYER_ONE;
+        }
+
+        if (winner.equals(playerTwo)) {
+            return Winner.PLAYER_TWO;
+        }
+
+        return Winner.BOTH_PLAYERS;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

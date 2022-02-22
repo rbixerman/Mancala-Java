@@ -1,5 +1,9 @@
 package mancala.domain;
 
+import mancala.domain.exceptions.GameIsOverException;
+import mancala.domain.exceptions.NotAValidMoveException;
+import mancala.domain.exceptions.NotYourBowlException;
+
 public class Bowl {
 
     private static final int BOARD_SIZE = 14;
@@ -45,13 +49,13 @@ public class Bowl {
         this.numberOfStones += amount;
     }
 
-    public void doMove() throws NotAValidMoveException, GameIsOverException, NotYourTurnException {
+    public void doMove() throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
         if (isGameOver()) {
             throw new GameIsOverException();
         }
 
         if (!getOwner().isActive()) {
-            throw new NotYourTurnException();
+            throw new NotYourBowlException();
         }
         if (numberOfStones == 0) {
             throw new NotAValidMoveException();
