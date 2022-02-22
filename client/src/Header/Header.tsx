@@ -9,7 +9,7 @@ import urlLogo from "./logo.jpg";
 export function Header() {
     return <header className="main-header">
         <div>
-            <img src={urlLogo} /> 
+            <img alt="Sogyo Logo" src={urlLogo} /> 
             Mancala
         </div>
         <div className="main-navigation">

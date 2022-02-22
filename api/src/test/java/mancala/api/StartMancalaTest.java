@@ -20,7 +20,7 @@ public class StartMancalaTest {
     @Test
     public void startingMancalaReturnsAGameWithoutAWinner() {
         var response = startMancala("Mario", "Luigi");
-        var entity = (Mancala)response.getEntity();
+        var entity = (MancalaDTO) response.getEntity();
         var gameState = entity.getGameStatus();
         assertFalse(gameState.getEndOfGame());
         assertNull(gameState.getWinner());
@@ -29,7 +29,7 @@ public class StartMancalaTest {
     @Test
     public void startingMancalaReturnsThePlayerData() {
         var response = startMancala("Mario", "Luigi");
-        var entity = (Mancala)response.getEntity();
+        var entity = (MancalaDTO) response.getEntity();
         var players = entity.getPlayers();
         assertEquals(2, players.length);
         assertEquals("Mario", players[0].getName());
@@ -39,7 +39,7 @@ public class StartMancalaTest {
     @Test
     public void startingMancalaReturnsThePits() {
         var response = startMancala("Mario", "Luigi");
-        var entity = (Mancala)response.getEntity();
+        var entity = (MancalaDTO) response.getEntity();
         var players = entity.getPlayers();
         assertEquals(7, players[0].getPits().length);
         assertEquals(0, players[0].getPits()[0].getIndex());
@@ -87,8 +87,8 @@ public class StartMancalaTest {
     private HttpServletRequest request;
     private HttpSession session;
 
-    private PlayerInput playerInput(String namePlayer1, String namePlayer2) {
-        var input = new PlayerInput();
+    private PlayerInputDTO playerInput(String namePlayer1, String namePlayer2) {
+        var input = new PlayerInputDTO();
         input.setNameplayer1(namePlayer1);
         input.setNameplayer2(namePlayer2);
         return input;

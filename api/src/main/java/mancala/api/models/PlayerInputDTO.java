@@ -1,6 +1,6 @@
 package mancala.api.models;
 
-public class PlayerInput {
+public class PlayerInputDTO {
 
 	String nameplayer1;
 	String nameplayer2;

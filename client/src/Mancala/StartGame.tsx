@@ -47,7 +47,7 @@ export function StartGame({ setGameState }: StartGameProps) {
             } else {
                 console.error(response.statusText);
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error(error.toString());
         }
     }

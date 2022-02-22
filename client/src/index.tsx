@@ -9,7 +9,7 @@ ReactDOM.render(
 
 // Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
 // Learn more: https://www.snowpack.dev/#hot-module-replacement
-const hotMudleReplacement = import.meta.hot;
-if (hotMudleReplacement) {
-    hotMudleReplacement.accept();
+const hotModuleReplacement = import.meta.hot;
+if (hotModuleReplacement) {
+    hotModuleReplacement.accept();
 }
