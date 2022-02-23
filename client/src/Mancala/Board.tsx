@@ -6,6 +6,7 @@ import { Kalaha } from "./gameboard/Kalaha";
 import { Row } from "./gameboard/Row";
 import { Rows } from "./gameboard/Rows";
 import { PlayerName } from "./PlayerName";
+import { GameMessage } from "./GameMessage";
 
 type BoardProps = {
     gameState: GameState,
@@ -18,6 +19,8 @@ export function Board({ gameState, setGameState }: BoardProps) {
     const playerTwo = gameState.players[1];
     return (
         <div className="board-wrapper">
+            <GameMessage gameState={gameState} />
+
             <PlayerName player={playerTwo} />
 
             <div className="mancala-board">
