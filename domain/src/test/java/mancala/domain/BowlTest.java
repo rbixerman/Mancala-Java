@@ -471,4 +471,37 @@ public class BowlTest {
         assertEquals(player1, bowl.getWinner());
     }
 
+    @Test
+    public void when_game_is_over_all_stones_should_be_moved_to_the_correct_kalaha() throws GameIsOverException, NotAValidMoveException, NotYourBowlException {
+
+        Player player1 = new Player();
+        Bowl bowl = new Bowl(player1);
+        Player player2 = player1.getOpponent();
+
+        bowl.getNeighbour(3).doMove();
+        bowl.getNeighbour(7).doMove();
+
+        bowl.getNeighbour(0).doMove();
+        bowl.getNeighbour(8).doMove();
+
+        bowl.getNeighbour(9).doMove();
+        bowl.getNeighbour(0).doMove();
+
+        bowl.getNeighbour(10).doMove();
+        bowl.getNeighbour(0).doMove();
+
+        bowl.getNeighbour(12).doMove();
+        bowl.getNeighbour(0).doMove();
+
+        bowl.getNeighbour(11).doMove();
+        bowl.getNeighbour(0).doMove();
+
+        bowl.getNeighbour(12).doMove();
+
+        assertEquals(35, bowl.getScore(player1));
+        assertEquals(13, bowl.getScore(player2));
+
+        int[] expected = new int[]{0,0,0,0,0,0,35,0,0,0,0,0,0,13};
+        assertArrayEquals(expected, getRelativeBoardStateArray(bowl));
+    }
 }

@@ -43,6 +43,11 @@ public class Kalaha extends Bowl {
     }
 
     @Override
+    protected void passAllToNext() {
+        // Nothing to do here, stop the passing process.
+    }
+
+    @Override
     protected void passCapturedStones(Bowl captor, int amountCaptured) {
         if (captor.getKalaha() != this) {
             getNeighbour().passCapturedStones(captor, amountCaptured);

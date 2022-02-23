@@ -1,7 +1,14 @@
+:root {
+    --player-one-color: sandybrown;
+    --player-two-color: tan;
+    --highlight-color: wheat;
+    --board-color: saddlebrown;
+}
+
 body {
     margin: 0px;
     padding: 0px;
-    background-color: #eeeeee;
+    background-color: #ccc;
 }
 
 .main-content {

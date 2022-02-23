@@ -1,0 +1,4 @@
+.player-name {
+    text-transform: capitalize;
+    font-size: larger;
+}

@@ -1,0 +1,5 @@
+.mancala-rows {
+    flex: 6 0 0;
+    display: flex;
+    flex-direction: column;
+}

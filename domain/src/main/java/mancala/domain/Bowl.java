@@ -66,6 +66,22 @@ public class Bowl {
 
         getNeighbour().passStones(this, stonesToPass);
         getOwner().switchTurns();
+
+        if (isGameOver()) {
+            Bowl otherSideStart = getKalaha().getNeighbour();
+            Bowl thisSideStart = otherSideStart.getKalaha().getNeighbour();
+
+            otherSideStart.passAllToNext();
+            thisSideStart.passAllToNext();
+        }
+    }
+
+    protected void passAllToNext() {
+        int stonesToPass = getNumberOfStones();
+        numberOfStones = 0;
+        getNeighbour().addStones(stonesToPass);
+        getNeighbour().passAllToNext();
+
     }
 
     protected void passStones(Bowl from, int stonesToPass) {

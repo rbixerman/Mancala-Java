@@ -1,7 +1,11 @@
 import React from "react";
 import type { GameState } from "src/gameState";
-import { Pit } from "./Pit";
 import "./Board.css";
+
+import { Kalaha } from "./gameboard/Kalaha";
+import { Row } from "./gameboard/Row";
+import { Rows } from "./gameboard/Rows";
+import { PlayerName } from "./PlayerName";
 
 type BoardProps = {
     gameState: GameState,
@@ -9,22 +13,23 @@ type BoardProps = {
 }
 
 export function Board({ gameState, setGameState }: BoardProps) {
+
+    const playerOne = gameState.players[0];
+    const playerTwo = gameState.players[1];
     return (
-        <div>
-            <div className="side">
-                {gameState.players[1].name}
-                <div className="board-row">
-                    {gameState.players[1].pits.slice().reverse().map(pit => <Pit key={"p2pit" + pit.index} gameState={gameState} setGameState={setGameState} pit={pit} />)}
-                    <Pit pit={undefined} gameState={gameState} setGameState={setGameState} />
-                </div>
+        <div className="board-wrapper">
+            <PlayerName player={playerTwo} />
+
+            <div className="mancala-board">
+                <Kalaha owner={playerTwo} />
+                <Rows>
+                    <Row owner={playerTwo} setGameState={setGameState} />
+                    <Row owner={playerOne} setGameState={setGameState} />
+                </Rows>
+                <Kalaha owner={playerOne} />
             </div>
-            <div className="side">
-                <div className="board-row">
-                    <Pit pit={undefined} gameState={gameState} setGameState={setGameState} />
-                    {gameState.players[0].pits.map(pit => <Pit key={"p1pit" + pit.index} pit={pit} setGameState={setGameState} gameState={gameState} />)}
-                </div>
-                {gameState.players[0].name}
-            </div>
+
+            <PlayerName player={playerOne} />
         </div>
     )
 }

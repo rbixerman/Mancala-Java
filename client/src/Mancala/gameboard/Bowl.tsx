@@ -1,12 +1,14 @@
 import React from "react";
-import type { GameState, Pit } from "src/gameState";
-import "./Pit.css";
+import type { GameState, Pit, Player } from "src/gameState";
 
-type PitProps = {
-    pit: Pit | undefined,
-    gameState: GameState,
+import "./Bowl.css";
+
+type BowlProps = {
+    owner: Player,
+    pit: Pit,
     setGameState(newGameState: GameState): void
 }
+
 
 type MoveResponse = {
     success: boolean,
@@ -14,24 +16,17 @@ type MoveResponse = {
     errorMessage: String
 }
 
-export function Pit({ pit, gameState, setGameState }: PitProps) {
-    const index = pit?.index;
+export function Bowl({ owner, pit, setGameState }: BowlProps) {
 
+    const backgroundClass = owner.type === "player1" ? "player-one" : "player-two";
 
     async function tryDoMove(e: React.MouseEvent<HTMLButtonElement>) {
+        const index = pit.index;
         e.preventDefault();
-        console.log(`Button ${pit?.index} pressed.`);
-
-        if (!pit) return;
-
-        /*let newGameState: GameState = JSON.parse(JSON.stringify(gameState));
-        let nstones = newGameState.players[Math.floor(pit?.index / 7)].pits[pit.index % 7].nrOfStones
-        newGameState.players[Math.floor(pit?.index / 7)].pits[pit.index % 7].nrOfStones = nstones + 1;
-
-        setGameState(newGameState);*/
+        console.log(`Button ${index} pressed.`);
 
         try {
-            const response = await fetch(`mancala/api/move?index=${pit.index}`, {
+            const response = await fetch(`mancala/api/move?index=${index}`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json'
@@ -54,8 +49,8 @@ export function Pit({ pit, gameState, setGameState }: PitProps) {
     }
 
     return (
-        <button className="pit" onClick={tryDoMove}>
-            {pit && pit.nrOfStones}
+        <button className={`mancala-bowl ${backgroundClass}`} onClick={tryDoMove}>
+            {pit.nrOfStones}
         </button>
     )
 }
