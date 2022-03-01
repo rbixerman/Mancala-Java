@@ -1,9 +1,9 @@
-image: gradle:latest
+image: gradle:latest  
 
 stages:
-  - sample-stage
+  - build
 
 sample-job:
-  stage: sample-stage
+  stage: build
   script:
-    - echo "Hello world"
+    - gradle build -x test

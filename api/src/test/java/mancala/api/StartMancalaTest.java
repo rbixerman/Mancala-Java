@@ -23,7 +23,7 @@ public class StartMancalaTest {
         var entity = (MancalaDTO) response.getEntity();
         var gameState = entity.getGameStatus();
         assertFalse(gameState.getEndOfGame());
-        assertNull(gameState.getWinner());
+        assertEquals("no player has won yet", gameState.getWinner());
     }
 
     @Test
