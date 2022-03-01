@@ -2,8 +2,14 @@ image: gradle:latest
 
 stages:
   - build
+  - test 
 
-sample-job:
+build-job:
   stage: build
   script:
     - gradle build -x test
+
+test-job:
+  stage: test
+  script:
+    - gradle test
