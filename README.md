@@ -5,6 +5,20 @@ This repository contains the files for three modules:
 - Model view controller: build a website for your own mancala game (or use the sloppy default implementation).
 - CI/CD: run your tests automatically when pushing code to Gitlab.
 
+## CI/CD
+
+- Pipeline consists of:  
+```
+# build stage
+$ gradle build -x test
+
+# test stage
+$ gradle test
+
+# coverage stage
+$ gradle jacocoTestCoverageVerification
+```
+- Pipeline fails when code coverage is less than 60%
 
 ## Repository structure
 

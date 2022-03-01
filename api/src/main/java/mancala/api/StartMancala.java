@@ -16,8 +16,6 @@ public class StartMancala {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response initialize(@Context HttpServletRequest request,
 			PlayerInputDTO players) {
-		System.out.println("Got here!");
-
 		Mancala mancala = new MancalaImpl();
 		String namePlayer1 = players.getNameplayer1();
 		String namePlayer2 = players.getNameplayer2();
