@@ -8,7 +8,7 @@ public class FeatureTest {
 
     @Test
     public void two_should_equal_one_plus_one() {
-        int one_plus_one = 0;
+        int one_plus_one = 1 + 1;
         assertEquals(2, one_plus_one);
     }
 }
