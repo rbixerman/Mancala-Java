@@ -36,7 +36,7 @@ public class App {
         // http://localost:8080/mancala/api/start
         ServletHolder serverHolder = context.addServlet(ServletContainer.class, "/mancala/api/*");
         serverHolder.setInitOrder(1);
-        serverHolder.setInitParameter("jersey.config.server.provider.packages", 
+        serverHolder.setInitParameter("jersey.config.server.provider.packages",
                 "mancala.api");
     }
 }

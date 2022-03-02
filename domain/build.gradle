@@ -3,6 +3,7 @@ plugins {
     id 'java'
     id 'java-library'
     id 'jacoco'
+    id 'checkstyle'
 }
 
 repositories {
@@ -17,7 +18,6 @@ dependencies {
 }
 
 test {
-    // For running our tests, use the test runner provided by JUnit.
     useJUnitPlatform()
 }
 
@@ -35,4 +35,12 @@ jacocoTestCoverageVerification {
             }
         }
     }
+}
+checkstyle {
+    configFile file("../config/checkstyle/checkstyle.xml")
+    configProperties.checkstyleSuppressionsPath = file("../config/checkstyle/suppressions.xml").absolutePath
+}
+
+checkstyleMain {
+    source = 'src/main/java'
 }

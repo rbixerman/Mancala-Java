@@ -4,63 +4,60 @@ import mancala.domain.exceptions.MancalaException;
 
 public interface Mancala {
 
-	enum Player {
-		PLAYER_ONE, PLAYER_TWO
-	}
+    /**
+     * Method indicating if the first player has the next turn or not.
+     * If player 1 is not in turn, then player 2 is in turn.
+     *
+     * @param player The player which you want to know the turn for.
+     * @return True if the first player has the next turn, false if it's the turn of
+     * the other player.
+     */
+    boolean isPlayersTurn(Mancala.Player player);
 
-	enum Winner {
-		NO_PLAYERS, PLAYER_ONE, PLAYER_TWO, BOTH_PLAYERS
-	}
+    /**
+     * Method for playing the specified recess. Index is as specified below:
+     * <p>
+     * 12 11 10 9 8 7
+     * 13 6
+     * 0 1 2 3 4 5
+     *
+     * @param index Index of the recess to be played.
+     */
+    void playPit(int index) throws MancalaException;
 
-	/**
-	 * Method indicating if the first player has the next turn or not.
-	 * If player 1 is not in turn, then player 2 is in turn.
-	 * 
-	 * @param The player which you want to know the turn for.
-	 * @return True if the first player has the next turn, false if it's the turn of
-	 *         the other player.
-	 */
-	boolean isPlayersTurn(Mancala.Player player);
+    /**
+     * Method for returning the amount of stones in de specified pit. Index is as
+     * specified below:
+     * <p>
+     * 12 11 10 9 8 7
+     * 13 6
+     * 0 1 2 3 4 5
+     *
+     * @param index Index of the pit.
+     * @return Amount of stone.
+     */
+    int getStonesForPit(int index);
 
-	/**
-	 * Method for playing the specified recess. Index is as specified below:
-	 * 
-	 * 12 11 10 9 8 7
-	 * 13 6
-	 * 0 1 2 3 4 5
-	 * 
-	 * @param index Index of the recess to be played.
-	 * @return 15 item long Array with the current state of the game. The 15th item
-	 *         indicates which player has the next turn (possible values are 1 or
-	 *         2).
-	 */
-	void playPit(int index) throws MancalaException;
+    /**
+     * Method for retrieving whether the game has ended or not.
+     *
+     * @return True is the game has ended otherwise False.
+     */
+    boolean isEndOfGame();
 
-	/**
-	 * Method for returning the amount of stones in de specified pit. Index is as
-	 * specified below:
-	 * 
-	 * 12 11 10 9 8 7
-	 * 13 6
-	 * 0 1 2 3 4 5
-	 * 
-	 * @param index Index of the pit.
-	 * @return Amount of stone.
-	 */
-	int getStonesForPit(int index);
+    /**
+     * Method for retrieving the player that has won the game.
+     *
+     * @return Integer value representing which player(s) (if any) won the game.
+     */
+    Winner getWinner();
 
-	/**
-	 * Method for retrieving whether the game has ended or not.
-	 * 
-	 * @return True is the game has ended otherwise False.
-	 */
-	boolean isEndOfGame();
+    enum Player {
+        PLAYER_ONE, PLAYER_TWO
+    }
 
-	/**
-	 * Method for retrieving the player that has won the game.
-	 * 
-	 * @return Integer value representing which player(s) (if any) won the game.
-	 */
-	Winner getWinner();
+    enum Winner {
+        NO_PLAYERS, PLAYER_ONE, PLAYER_TWO, BOTH_PLAYERS
+    }
 
 }

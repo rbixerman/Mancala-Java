@@ -4,6 +4,7 @@ plugins {
     // This time we're building a command-line executable application.
     id 'application'
     id 'jacoco'
+    id 'checkstyle'
 }
 
 repositories {
@@ -63,4 +64,11 @@ jacocoTestCoverageVerification {
             }
         }
     }
+}
+checkstyle {
+    configFile file("../config/checkstyle/checkstyle.xml")
+    configProperties.checkstyleSuppressionsPath = file("../config/checkstyle/suppressions.xml").absolutePath
+}
+checkstyleMain {
+    source = "src/main/java"
 }

@@ -13,7 +13,7 @@ public class GameStatusDTO {
 
         Mancala.Winner winner = mancala.getWinner();
 
-        this.winner = switch(winner) {
+        this.winner = switch (winner) {
             case NO_PLAYERS -> "no player has won yet";
             case PLAYER_ONE -> namePlayer1;
             case PLAYER_TWO -> namePlayer2;

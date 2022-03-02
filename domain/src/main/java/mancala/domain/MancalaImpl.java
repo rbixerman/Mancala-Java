@@ -17,7 +17,7 @@ public class MancalaImpl implements Mancala {
 
     @Override
     public boolean isPlayersTurn(Mancala.Player player) {
-        return switch(player) {
+        return switch (player) {
             case PLAYER_ONE -> playerOne.isActive();
             case PLAYER_TWO -> playerTwo.isActive();
         };
@@ -56,28 +56,4 @@ public class MancalaImpl implements Mancala {
 
         return Winner.BOTH_PLAYERS;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

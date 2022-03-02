@@ -98,7 +98,10 @@ public class Bowl {
     }
 
     private boolean shouldCapture(Bowl from, int stonesToPass) {
-        return this.numberOfStones == 1 && stonesToPass == 1 && isSameTeam(from) && getOpposite().getNumberOfStones() > 0;
+        return this.numberOfStones == 1
+                && stonesToPass == 1
+                && isSameTeam(from)
+                && getOpposite().getNumberOfStones() > 0;
     }
 
     private boolean isSameTeam(Bowl other) {
