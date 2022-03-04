@@ -3,24 +3,33 @@ image: gradle:latest
 stages:
   - build
   - test 
-  - coverage 
+  - coverage
+  - checkstyle 
   
 build-job:
   stage: build
   script:
-    - gradle build -x test
+    - gradle assemble
 
 test-job:
   stage: test
   script:
     - gradle test
+
+coverage-job:
+  stage: coverage
+  script:
     - gradle jacocoTestCoverageVerification
   artifacts:
     when: always
     paths:
       - $CI_PROJECT_DIR/*/build/reports/*
 
-coverage-job:
-  stage: coverage
+checkstyle-job:
+  stage: checkstyle
   script:
-    - gradle jacocoTestCoverageVerification
+    - gradle check
+  artifacts:
+    when: always
+    paths:
+      - $CI_PROJECT_DIR/*/build/reports/*
