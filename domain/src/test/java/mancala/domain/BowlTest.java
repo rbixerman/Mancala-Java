@@ -124,7 +124,8 @@ public class BowlTest {
     }
 
     @Test
-    public void only_the_active_players_bowls_can_be_moved() throws GameIsOverException, NotYourBowlException, NotAValidMoveException {
+    public void only_the_active_players_bowls_can_be_moved()
+            throws GameIsOverException, NotYourBowlException, NotAValidMoveException {
         Bowl bowl = new Bowl();
         assertThrows(NotYourBowlException.class, bowl.getNeighbour(7)::doMove);
 
@@ -133,7 +134,8 @@ public class BowlTest {
     }
 
     @Test
-    public void a_move_empties_the_corresponding_bowl() throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
+    public void a_move_empties_the_corresponding_bowl()
+            throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
         Bowl bowl = new Bowl();
         bowl.doMove();
 
@@ -141,7 +143,8 @@ public class BowlTest {
     }
 
     @Test
-    public void a_move_that_doesnt_end_in_a_kalaha_switches_player_turns() throws GameIsOverException, NotYourBowlException, NotAValidMoveException {
+    public void a_move_that_doesnt_end_in_a_kalaha_switches_player_turns()
+            throws GameIsOverException, NotYourBowlException, NotAValidMoveException {
         Player player = new Player();
 
         Bowl bowl = new Bowl(player);
@@ -151,7 +154,8 @@ public class BowlTest {
     }
 
     @Test
-    public void a_move_that_ends_in_your_kalaha_doesnt_switch_player_turns() throws GameIsOverException, NotYourBowlException, NotAValidMoveException {
+    public void a_move_that_ends_in_your_kalaha_doesnt_switch_player_turns()
+            throws GameIsOverException, NotYourBowlException, NotAValidMoveException {
         Player player = new Player();
         Bowl bowl = new Bowl(player);
         bowl.getNeighbour(2).doMove();
@@ -160,7 +164,8 @@ public class BowlTest {
     }
 
     @Test
-    public void a_move_gives_a_stone_to_its_neighbour() throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
+    public void a_move_gives_a_stone_to_its_neighbour()
+            throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
         Bowl bowl = new Bowl();
         bowl.doMove();
 
@@ -168,7 +173,8 @@ public class BowlTest {
     }
 
     @Test
-    public void a_move_passes_all_stones() throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
+    public void a_move_passes_all_stones()
+            throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
         Bowl bowl = new Bowl();
         bowl.doMove();
 
@@ -189,7 +195,8 @@ public class BowlTest {
     }
 
     @Test
-    public void a_move_doesnt_pass_more_stones_than_available() throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
+    public void a_move_doesnt_pass_more_stones_than_available()
+            throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
         Bowl bowl = new Bowl();
         bowl.doMove();
 
@@ -198,7 +205,8 @@ public class BowlTest {
     }
 
     @Test
-    public void a_kalaha_takes_a_stone_when_offered_by_an_allied_bowl() throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
+    public void a_kalaha_takes_a_stone_when_offered_by_an_allied_bowl()
+            throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
         Bowl bowl = new Bowl();
         bowl.getNeighbour(3).doMove();
 
@@ -207,7 +215,8 @@ public class BowlTest {
     }
 
     @Test
-    public void a_kalaha_does_not_take_a_stone_when_offered_by_an_enemy_bowl() throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
+    public void a_kalaha_does_not_take_a_stone_when_offered_by_an_enemy_bowl()
+            throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
         Bowl bowl = new Bowl(14, new Player());
         bowl.doMove();
 
@@ -216,7 +225,8 @@ public class BowlTest {
     }
 
     @Test
-    public void an_empty_allied_bowl_captures_stones_when_passed_the_final_stone_of_a_move_and_opposing_bowl_is_not_empty() throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
+    public void an_empty_allied_bowl_captures_stones_when_passed_the_final_stone_of_a_move_and_opposing_bowl_is_not_empty()
+            throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
         Bowl bowl = new Bowl(13, new Player());
         bowl.doMove();
 
@@ -225,7 +235,8 @@ public class BowlTest {
     }
 
     @Test
-    public void an_empty_allied_bowl_does_not_capture_stones_when_passed_the_final_stone_of_a_move_and_opposing_bowl_is_empty() throws GameIsOverException, NotYourBowlException, NotAValidMoveException {
+    public void an_empty_allied_bowl_does_not_capture_stones_when_passed_the_final_stone_of_a_move_and_opposing_bowl_is_empty()
+            throws GameIsOverException, NotYourBowlException, NotAValidMoveException {
         Bowl bowl = new Bowl();
 
         bowl.getNeighbour(4).doMove();
@@ -240,7 +251,8 @@ public class BowlTest {
     }
 
     @Test
-    public void an_empty_enemy_bowl_does_not_capture_stones_when_passed_the_final_stone_of_a_move() throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
+    public void an_empty_enemy_bowl_does_not_capture_stones_when_passed_the_final_stone_of_a_move()
+            throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
         Bowl bowl = new Bowl();
         bowl.doMove();
 
@@ -254,7 +266,8 @@ public class BowlTest {
     }
 
     @Test
-    public void a_sequence_of_moves_should_behave_as_expected() throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
+    public void a_sequence_of_moves_should_behave_as_expected()
+            throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
         Bowl bowl = new Bowl();
         bowl.getNeighbour(2).doMove();
         bowl.getNeighbour(3).doMove();
@@ -277,7 +290,8 @@ public class BowlTest {
     }
 
     @Test
-    public void is_empty_should_be_true_when_bowls_side_is_empty() throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
+    public void is_empty_should_be_true_when_bowls_side_is_empty()
+            throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
         Bowl bowl = new Bowl();
 
         bowl.doMove();
@@ -347,7 +361,8 @@ public class BowlTest {
     }
 
     @Test
-    public void when_game_is_over_no_move_can_be_made() throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
+    public void when_game_is_over_no_move_can_be_made()
+            throws NotAValidMoveException, GameIsOverException, NotYourBowlException {
         Bowl bowl = new Bowl();
 
         bowl.doMove();
@@ -393,7 +408,8 @@ public class BowlTest {
     }
 
     @Test
-    public void when_game_is_over_and_player_two_has_higher_score_he_is_the_winner() throws GameIsOverException, NotYourBowlException, NotAValidMoveException {
+    public void when_game_is_over_and_player_two_has_higher_score_he_is_the_winner()
+            throws GameIsOverException, NotYourBowlException, NotAValidMoveException {
         Player player1 = new Player();
         Bowl bowl = new Bowl(player1);
         Player player2 = player1.getOpponent();
@@ -413,7 +429,8 @@ public class BowlTest {
     }
 
     @Test
-    public void when_the_game_is_over_the_scores_are_correct() throws GameIsOverException, NotYourBowlException, NotAValidMoveException {
+    public void when_the_game_is_over_the_scores_are_correct()
+            throws GameIsOverException, NotYourBowlException, NotAValidMoveException {
         Player player1 = new Player();
         Bowl bowl = new Bowl(player1);
         Player player2 = player1.getOpponent();
@@ -443,7 +460,8 @@ public class BowlTest {
     }
 
     @Test
-    public void when_game_is_over_and_player_one_has_higher_score_he_is_the_winner() throws GameIsOverException, NotYourBowlException, NotAValidMoveException {
+    public void when_game_is_over_and_player_one_has_higher_score_he_is_the_winner()
+            throws GameIsOverException, NotYourBowlException, NotAValidMoveException {
         Player player1 = new Player();
         Bowl bowl = new Bowl(player1);
         Player player2 = player1.getOpponent();
@@ -472,7 +490,8 @@ public class BowlTest {
     }
 
     @Test
-    public void when_game_is_over_all_stones_should_be_moved_to_the_correct_kalaha() throws GameIsOverException, NotAValidMoveException, NotYourBowlException {
+    public void when_game_is_over_all_stones_should_be_moved_to_the_correct_kalaha()
+            throws GameIsOverException, NotAValidMoveException, NotYourBowlException {
 
         Player player1 = new Player();
         Bowl bowl = new Bowl(player1);
@@ -501,7 +520,7 @@ public class BowlTest {
         assertEquals(35, bowl.getScore(player1));
         assertEquals(13, bowl.getScore(player2));
 
-        int[] expected = new int[]{0,0,0,0,0,0,35,0,0,0,0,0,0,13};
+        int[] expected = new int[]{0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 13};
         assertArrayEquals(expected, getRelativeBoardStateArray(bowl));
     }
 }

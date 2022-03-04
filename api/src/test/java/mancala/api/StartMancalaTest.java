@@ -1,16 +1,22 @@
 package mancala.api;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import jakarta.ws.rs.core.Response;
+import mancala.api.models.MancalaDTO;
+import mancala.api.models.PlayerInputDTO;
+import mancala.domain.MancalaImpl;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.*;
 
-import jakarta.servlet.http.*;
-import jakarta.ws.rs.core.*;
-
-import mancala.api.models.*;
-import mancala.domain.MancalaImpl;
-
 public class StartMancalaTest {
+
+    private HttpServletRequest request;
+    private HttpSession session;
+
     @Test
     public void startingMancalaShouldBeAllowed() {
         var response = startMancala("Mario", "Luigi");
@@ -20,7 +26,7 @@ public class StartMancalaTest {
     @Test
     public void startingMancalaReturnsAGameWithoutAWinner() {
         var response = startMancala("Mario", "Luigi");
-        var entity = (MancalaDTO) response.getEntity();
+        MancalaDTO entity = (MancalaDTO) response.getEntity();
         var gameState = entity.getGameStatus();
         assertFalse(gameState.getEndOfGame());
         assertEquals("no player has won yet", gameState.getWinner());
@@ -71,9 +77,9 @@ public class StartMancalaTest {
     }
 
     private Response startMancala(String namePlayer1, String namePlayer2) {
-        var servlet = new StartMancala();
-        var request = createRequestContext();
-        var input = playerInput(namePlayer1, namePlayer2);
+        StartMancala servlet = new StartMancala();
+        HttpServletRequest request = createRequestContext();
+        PlayerInputDTO input = playerInput(namePlayer1, namePlayer2);
         return servlet.initialize(request, input);
     }
 
@@ -83,9 +89,6 @@ public class StartMancalaTest {
         when(request.getSession(true)).thenReturn(session);
         return request;
     }
-
-    private HttpServletRequest request;
-    private HttpSession session;
 
     private PlayerInputDTO playerInput(String namePlayer1, String namePlayer2) {
         var input = new PlayerInputDTO();

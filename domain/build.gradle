@@ -40,6 +40,7 @@ jacocoTestCoverageVerification {
 checkstyle {
     configFile file("../config/checkstyle/checkstyle.xml")
     configProperties.checkstyleSuppressionsPath = file("../config/checkstyle/suppressions.xml").absolutePath
+    maxErrors = 15
 }
 
 checkstyleMain {
