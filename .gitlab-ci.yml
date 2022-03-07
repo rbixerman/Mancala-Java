@@ -37,3 +37,13 @@ checkstyle-job:
     when: always
     paths:
       - $CI_PROJECT_DIR/*/build/reports/*
+
+distribute-job:
+  stage: distribute
+  rules:
+    if: $CI_COMMIT_TAG 
+  script:
+    - gradle -Pversion=$CI_COMMIT_TAG distZip
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/*/build/distributions/*.zip 
