@@ -53,14 +53,14 @@ distribute-job:
 release-job:
   stage: release
   image: registry.gitlab.com/gitlab-org/release-cli:latest 
+  needs: 
+     - job: distribute-job
+       artifacts: true
   rules:
      - if: $CI_COMMIT_TAG 
   script:
     - echo 'Running release job'
   release:
-    needs: 
-     - job: distribute-job
-       artifacts: true
     name: 'Release $CI_COMMIT_TAG'
     description: 'Created using the release cli'
     tag_name: '$CI_COMMIT_TAG'
