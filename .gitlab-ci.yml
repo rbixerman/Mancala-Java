@@ -46,9 +46,12 @@ distribute-job:
     - if: $CI_COMMIT_TAG
   script:
     - gradle -Pversion=$CI_COMMIT_TAG distZip
+    - echo RE_JOB_ID=$CI_JOB_ID >> distribute-job.env
   artifacts:
     paths:
       - $CI_PROJECT_DIR/*/build/distributions/*.zip 
+    reports: 
+      dotenv: distribute-job.env 
 
 release-job:
   stage: release
@@ -65,3 +68,7 @@ release-job:
     description: 'Created using the release cli'
     tag_name: '$CI_COMMIT_TAG'
     ref: '$CI_COMMIT_SHA'
+    assets:
+      links:
+        - name: 'Api zip'
+          url: 'https://git.sogyo.nl/rodney/mancala-java-rb/-/jobs/${RE_JOB_ID}/artifacts/browse/api/build/distributions/api-$CI_COMMIT_TAG.zip'
